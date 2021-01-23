@@ -1,9 +1,25 @@
-#login{
-    color: black;
-    text-decoration: none;
+nav {
+    background: rgb(0, 33, 48);
+    padding: 0.7rem 0.2rem;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.493);
 }
 
-#signup{
-    color: black;
-    text-decoration: none;
+.menu {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0 0.7rem;
+    width: 100%;
+    list-style-type: none;
+}
+
+#login, #signup, #home {
+    color: white;
 }

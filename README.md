@@ -1,1 +1,1 @@
-# appacademy-solo
+# Welcome to GymBnB

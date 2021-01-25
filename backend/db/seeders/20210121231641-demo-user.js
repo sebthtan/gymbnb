@@ -15,8 +15,8 @@ module.exports = {
       newData.push(seed)
     }
     newData.push({
-      email: 'demo@user.io',
-      username: 'Demo-lition',
+      email: 'test@test.com',
+      username: 'testuser',
       hashedPassword: bcrypt.hashSync('password')
     })
 

@@ -1,0 +1,17 @@
+
+.top-half {
+    min-height: 20rem;
+    width: 100%;
+    box-sizing: border-box;
+
+    /* background-repeat: no-repeat; */
+}
+
+
+.bottom-half {
+    margin-top: 50rem;
+}
+
+nav{
+    background-color: black;
+}

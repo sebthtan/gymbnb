@@ -1,12 +1,12 @@
 nav {
-    background: rgb(0, 33, 48);
-    padding: 0.7rem 0.2rem;
+    background: white;
+    padding: 0.7rem 5rem;
     width: 100%;
     box-sizing: border-box;
-    position: fixed;
     top: 0;
-    z-index: 1;
-    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.493);
+    position: fixed;
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
 }
 
 .menu {
@@ -20,6 +20,80 @@ nav {
     list-style-type: none;
 }
 
+.menu > * {
+    height: 3rem;
+}
+
+#home {
+    border-radius: 5rem;
+}
+
+#dropdown-menu-button {
+    padding: 0.7rem;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 1rem;
+}
+
+.dropdown-menu {
+    background-color: white;
+    box-sizing: border-box;
+    padding: .5rem 0;
+    list-style-type: none;
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    font-weight: normal;
+
+}
+
+.logout {
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    text-align: left;
+    width: 100%;
+    padding: .5rem 1rem;
+    font-size: .95rem;
+    font-weight: bold;
+    border-top: 1px solid rgb(211, 211, 211);
+}
+
+.logout:hover {
+    background-color: rgba(211, 211, 211, 0.3);
+}
+
+.popout {
+    position: absolute !important;
+    right: 5rem;
+}
+
+#dropdown-menu-button:hover {
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2);
+}
+
 #login, #signup, #home {
-    color: white;
+    color:black;
+}
+
+#login {
+    height: 1rem;
+}
+
+#login:hover, #signup:hover {
+    color:rgb(219, 219, 219);
+}
+
+#home:hover {
+    /* background-color: rgba(233, 233, 233, 0.671); */
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2);
+}
+
+#search {
+    flex: 1;
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import './Navigation.css'
+import logo from './logo.png'
 import ProfileButton from './ProfileButton'
 import SearchBar from './SearchBar'
 
@@ -16,27 +17,31 @@ const Navigation = ({ isLoaded }) => {
     } else {
         sessionLinks = (
             <>
-                <li>
+                <div>
                     <NavLink to='/login' id='login'>Log In</NavLink>
-                </li>
-                <li>
+                </div>
+                <div>
                     <NavLink to='/signup' id='signup'>Sign Up</NavLink>
-                </li>
+                </div>
             </>
         )
     }
 
     return (
         <nav>
-            <ul className='menu'>
-                <li>
-                    <NavLink exact to='/' id='home'>Home</NavLink>
-                </li>
-                <li>
+            <div className='menu'>
+                <div id='home'>
+                    <NavLink exact to='/'>
+                        <img src={logo} alt='logo' ></img>
+                    </NavLink>
+                </div>
+                <div>
                     <SearchBar />
-                </li>
-                {isLoaded && sessionLinks}
-            </ul>
+                </div>
+                <div>
+                    {isLoaded && sessionLinks}
+                </div>
+            </div>
         </nav>
     )
 }

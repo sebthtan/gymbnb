@@ -7,6 +7,7 @@ nav {
     position: fixed;
     box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.1);
     font-weight: bold;
+    z-index: 1;
 }
 
 .menu {
@@ -35,6 +36,10 @@ nav {
     cursor: pointer;
     border: none;
     border-radius: 1rem;
+}
+
+#dropdown-menu-button:focus {
+outline: none;
 }
 
 .dropdown-menu {
@@ -90,10 +95,54 @@ nav {
 }
 
 #home:hover {
-    /* background-color: rgba(233, 233, 233, 0.671); */
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2);
 }
 
-#search {
-    flex: 1;
+#searchbar {
+    padding: .25rem;
+    border-radius: 1rem;
+    outline: none;
+    border: none;
+}
+
+#searchbar:focus {
+    background-color: white;
+}
+
+.submit {
+    padding: 1rem;
+    margin: .3rem;
+    border-radius: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(255, 56, 92);
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.submit:hover {
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2);
+}
+
+.submit:focus {
+    outline: none;
+}
+
+.searchbar-container {
+    padding: .5rem 1rem .5rem 2rem;
+    display: flex;
+    align-items: center;
+    border-radius: 5rem;
+    border: 1px solid lightgray;
+    height: 4.25rem;
+}
+
+.prevform {
+    padding: 0;
+    display: flex;
+    align-items: center;
 }

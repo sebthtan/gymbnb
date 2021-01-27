@@ -28,6 +28,8 @@
     "morgan": "^1.10.0",
     "per-env": "^1.0.2",
     "pg": "^8.5.1",
+    "react-geocode": "^0.2.2",
+    "request": "^2.88.2",
     "sequelize": "^5.22.3",
     "sequelize-cli": "^5.5.1"
   },

@@ -1,12 +1,9 @@
 
 .top-half {
-    min-height: 20rem;
-    width: 100%;
+    display: flex;
+    align-content: center;
     box-sizing: border-box;
-
-    /* background-repeat: no-repeat; */
 }
-
 
 .bottom-half {
     margin-top: 50rem;

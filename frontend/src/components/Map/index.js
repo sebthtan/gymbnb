@@ -1,28 +1,32 @@
-// import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
 import GoogleMapReact from 'google-map-react'
 import LocationPin from './LocationPin'
 import './Map.css'
 
-const MapSection = ({ location = {
-    address: '1600 Amphitheatre Parkway, Mountain View, california.',
-    lat: 37.42216,
-    lng: -122.08427,
-}, zoom }) => {
+const MapSection = ({ locations, zoom }) => {
+
+    let center = { lat: 39.715956, lng: -96.999668 }
+    if (!locations) {
+        locations = [{ latitude: 39.715956, longitude: -96.999668 }]
+    }
+    if (locations.length) {
+        center = { lat: locations[0].latitude, lng: locations[0].longitude }
+    }
+
     return (
-        <div className='map'>
-            <div className='google-map'>
-                <GoogleMapReact
-                    bootstrapURLKeys={{ key: 'AIzaSyAt_6tRBdyxJgkTbCnc0ih4EcJ-CAvLG1E' }}
-                    defaultCenter={location}
-                    defaultZoom={zoom}
-                >
-                    <LocationPin
-                        lat={location.lat}
-                        lng={location.lng}
-                        text={location.address}
-                    />
-                </GoogleMapReact>
-            </div>
+        <div className='google-map'>
+            <GoogleMapReact
+                bootstrapURLKeys={{ key: 'AIzaSyAt_6tRBdyxJgkTbCnc0ih4EcJ-CAvLG1E' }}
+                defaultCenter={center}
+                defaultZoom={zoom}
+                key={`${center.lat}-${center.lng}`}
+            >
+                {locations.map((location) => {
+                    if (!location) {
+                        return <></>
+                    }
+                    return <LocationPin key={locations.indexOf(location)} lat={location.latitude} lng={location.longitude} text={location.label} />
+                })}
+            </GoogleMapReact>
         </div>
     )
 }

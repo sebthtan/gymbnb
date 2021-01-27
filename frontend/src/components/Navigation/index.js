@@ -35,7 +35,7 @@ const Navigation = ({ isLoaded }) => {
                         <img src={logo} alt='logo' ></img>
                     </NavLink>
                 </div>
-                <div>
+                <div className='searchbar-container'>
                     <SearchBar />
                 </div>
                 <div>

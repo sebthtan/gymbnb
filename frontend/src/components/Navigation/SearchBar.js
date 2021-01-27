@@ -1,36 +1,71 @@
 import DatePicker from 'react-date-picker';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
+// import icon from './searchicon.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { search, getSuggestions, loadAddresses } from '../../store/listings'
 
 const SearchBar = () => {
-    const [date, setDate] = useState(new Date())
+    // const [date, setDate] = useState(new Date())
+    const dispatch = useDispatch()
+    const history = useHistory()
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const [searchTerm, setSearchTerm] = useState('')
+
+    //
+
+    //
+    const handleChange = (e) => {
+        setSearchTerm(e.target.value)
+
+        // if (e.target.value.length >= 3) {
+        //     setTimeout(dispatch(getSuggestions(searchTerm)), 1000)
+        // }
     }
 
+    const handleClick = (e) => {
+        dispatch(search(searchTerm))
+        history.push(`/search/${encodeURI(searchTerm)}`)
+
+        // dispatch(updateMap())  --- START HERE TMRW
+    }
+
+
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>
+        <div className='prevform'>
+            <label>
+                <div style={{ textAlign: 'center' }}>
                     Location
-                    <input type='text'>
-                    </input>
-                </label>
-            </div>
-            <div>
+                </div>
+                <input
+                    type='text'
+                    id='searchbar'
+                    value={searchTerm}
+                    placeholder={'Where are you training?'}
+                    onChange={handleChange}
+                >
+                </input>
+            </label>
+            <button
+                className='submit'
+                onClick={handleClick}
+            >
+                Search
+            </button>
+
+            {/* <div>
                 <DatePicker
-                    onChange={setDate}
-                    value={date}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    value={startDate}
                 />
             </div>
             <div>
                 <DatePicker
-                    onChange={setDate}
-                    value={date}
+                    onChange={(e) => setEndDate(e.target.value)}
+                    value={endDate}
                 />
-            </div>
-            <button type='submit'>Search</button>
-        </form>
+            </div> */}
+        </div>
     )
 }
 

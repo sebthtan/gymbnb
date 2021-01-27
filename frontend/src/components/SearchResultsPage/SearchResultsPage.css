@@ -1,0 +1,30 @@
+/* .content {
+    display: flex;
+} */
+
+.column {
+    float: left;
+    width: 50%;
+  }
+
+.listing {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+.listing-price {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.listing-title {
+    padding: 1rem 0;
+    border-bottom: 1px solid lightgray;
+    font-size: 1.5rem;
+}
+
+.listing-description {
+    padding-top: 1rem;
+    font-size: 1rem;
+}

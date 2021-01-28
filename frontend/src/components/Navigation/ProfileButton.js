@@ -29,7 +29,7 @@ function ProfileButton({ user }) {
     };
 
     return (
-        <div>
+        <>
             <button onClick={openMenu} id='dropdown-menu-button'>
                 <i className="fas fa-user-circle" style={{ fontSize: '2rem' }} />
             </button>
@@ -42,7 +42,7 @@ function ProfileButton({ user }) {
                     {/* </li> */}
                 </ul>
             )}
-        </div>
+        </>
     );
 }
 

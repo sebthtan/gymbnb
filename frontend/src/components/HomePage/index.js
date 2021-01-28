@@ -1,15 +1,8 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React from 'react'
 import image from './gymsharkw3.jpg'
-import { getListings } from '../../store/listings.js'
-// import './HomePage.css'
+
 
 const HomePage = () => {
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getListings())
-    }, [dispatch])
 
     return (
         <>

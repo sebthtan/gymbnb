@@ -16,7 +16,7 @@ router.get('/', asyncHandler(async (req, res) => {
             {
                 model: Host, attributes: ['userId'],
                 include: {
-                    model: User, attributes: ['username', 'email']
+                    model: User, attributes: ['username', 'email', 'createdAt']
                 }
             },
             {
@@ -27,32 +27,27 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json(listings)
 }))
 
-router.get('/:id', asyncHandler(async (req, res) => {
-    const listing = await Listing.findByPk(req.params.id);
-    return res.json(listing)
-}))
-
-// router.get('/search?q=', asyncHandler(async (req, res) => {
-//     const term = req.query.q
-
-//     const filtered = await Listing.findAll({
-//         include: {
-//             model: City, attributes: ['name'],
-//             where: {
-//                 name: {
-//                     [Op.iLike]: `%${term}%`
+// router.get(`/:id(\\d+)`, asyncHandler(async (req, res) => {
+//     const listing = await Listing.findByPk(req.params.id, {
+//         include: [
+//             {
+//                 model: City, attributes: ['name'],
+//                 include: {
+//                     model: State, attributes: ['name'],
+//                 },
+//             },
+//             {
+//                 model: Host, attributes: ['userId'],
+//                 include: {
+//                     model: User, attributes: ['username', 'email', 'createdAt']
 //                 }
 //             },
-//             include: {
-//                 model: State, attributes: ['name'],
-//                 where: {
-//                     name: {
-//                         [Op.iLike]: `%${term}`
-//                     }
-//                 }
+//             {
+//                 model: Photo, attributes: ['url', 'caption']
 //             }
-//         },
-//     })
+//         ]
+//     });
+//     return res.json(listing)
 // }))
 
 module.exports = router

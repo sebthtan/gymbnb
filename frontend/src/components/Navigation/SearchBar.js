@@ -1,14 +1,15 @@
 import DatePicker from 'react-date-picker';
-import React, { useState, useEffect } from 'react'
+import React, { useState, } from 'react'
 import { useHistory } from 'react-router-dom'
 // import icon from './searchicon.png'
 import { useDispatch, useSelector } from 'react-redux'
-import { search, getSuggestions, loadAddresses } from '../../store/listings'
+import { search } from '../../store/listings'
 
 const SearchBar = () => {
     // const [date, setDate] = useState(new Date())
     const dispatch = useDispatch()
     const history = useHistory()
+    const listings = useSelector(state => state.listings.list)
 
     const [searchTerm, setSearchTerm] = useState('')
 
@@ -24,8 +25,8 @@ const SearchBar = () => {
     }
 
     const handleClick = (e) => {
-        dispatch(search(searchTerm))
-        history.push(`/search/${encodeURI(searchTerm)}`)
+        history.push(`/search`)
+        dispatch(search(searchTerm, listings))
 
         // dispatch(updateMap())  --- START HERE TMRW
     }
@@ -38,7 +39,7 @@ const SearchBar = () => {
                     Location
                 </div>
                 <input
-                    type='text'
+                    type='search'
                     id='searchbar'
                     value={searchTerm}
                     placeholder={'Where are you training?'}

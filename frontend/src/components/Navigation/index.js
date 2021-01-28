@@ -38,7 +38,7 @@ const Navigation = ({ isLoaded }) => {
                 <div className='searchbar-container'>
                     <SearchBar />
                 </div>
-                <div>
+                <div style={{ height: '56px' }}>
                     {isLoaded && sessionLinks}
                 </div>
             </div>

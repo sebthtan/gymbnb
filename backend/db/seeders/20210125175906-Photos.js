@@ -4,14 +4,14 @@ const faker = require('faker')
 module.exports = {
   up: (queryInterface, Sequelize) => {
     const getRandomInt = (max) => {
-      return Math.floor(Math.random() * Math.floor(max))
+      return Math.floor(Math.random() * Math.floor(max) + 1)
     }
     const newData = []
-    for (let i = 1; i < 50; i++) {
+    for (let i = 1; i < 200; i++) {
       const seed = {
         url: faker.image.imageUrl(),
         caption: faker.lorem.sentence(),
-        listingId: getRandomInt(40)
+        listingId: getRandomInt(51)
       }
       newData.push(seed)
     }

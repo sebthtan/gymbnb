@@ -7,6 +7,7 @@ import Navigation from './components/Navigation'
 import * as sessionActions from "./store/session";
 import HomePage from './components/HomePage'
 import SearchResultsPage from './components/SearchResultsPage'
+import ListingPage from './components/ListingPage'
 import { getListings } from './store/listings'
 
 function App() {
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route path='/search/'>
             <SearchResultsPage />
+          </Route>
+          <Route exact path='/listings/:listingId'>
+            <ListingPage />
           </Route>
         </Switch>
       )}

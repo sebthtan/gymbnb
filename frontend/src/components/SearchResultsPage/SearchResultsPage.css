@@ -10,23 +10,32 @@
 .listing {
     display: flex;
     align-items: center;
-    padding: 1rem;
+    padding: 0 1rem;
 }
 
 .listing-price {
     font-weight: bold;
     font-size: 1rem;
+    padding-left: 0;
+    margin-left: 175px;
 }
 
 .listing-title {
-    padding: 1rem 0;
-    border-bottom: 1px solid lightgray;
+    padding:0;
     font-size: 1.5rem;
+    width: 100%;
+    margin-left: 175px;
 }
 
 .listing-description {
-    padding-top: 1rem;
+    padding-top: 0;
+    padding-left: 0;
     font-size: 1rem;
     font-weight: 500;
     color: gray;
+    margin-left: 175px;
+}
+
+.result-container {
+    border-top: 1px solid lightgray;
 }

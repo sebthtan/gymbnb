@@ -58,6 +58,7 @@ export const getCoordinates = (normalizedAddresses) => async dispatch => {
             `http://api.positionstack.com/v1/forward?access_key=e1ac713dd54a8159282741fbb2a38c74&query=${address}`
         )
         dispatch(coords(res.data))
+
     })
 }
 

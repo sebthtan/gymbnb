@@ -34,6 +34,34 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
+      wifi: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
+      freeWeights: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
+      machineWeights: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
+      cardio: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
+      pool: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
+      lockerRoom: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
+      showers: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

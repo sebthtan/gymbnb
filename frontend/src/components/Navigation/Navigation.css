@@ -117,11 +117,12 @@ outline: none;
     color: white;
     background-color: rgb(255, 56, 92);
     height: 2.25rem;
-    display: flex;
-    align-items: center;
+    text-align: center;
+    line-height: 45%;
     outline: none;
     border: none;
     cursor: pointer;
+    font-size: 14px;
 }
 
 .submit:hover {

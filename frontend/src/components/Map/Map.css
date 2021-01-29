@@ -11,7 +11,7 @@
     right: 0;
     position: fixed;
     width: 50%;
-    height: 100%;
+    height: 90.5%;
   }
 
   .pin {
@@ -34,7 +34,7 @@
 
   @media screen and (min-width: 799px) {
     .google-map {
-      height: 90vh;
+      height: 90.5%;
     }
 
     .map-h2 {

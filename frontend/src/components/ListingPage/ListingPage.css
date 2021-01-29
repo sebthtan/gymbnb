@@ -6,11 +6,10 @@
 }
 
 .slide-container {
-    width: 100%;
+    width: 50%;
     /* margin-left: auto;
     float: left;
     margin-right: auto; */
-    columns: auto 2;
     padding: 1rem 0;
 }
 
@@ -53,6 +52,10 @@
       box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.226);
   }
 
+
+  .description {
+      width: 50%;
+  }
   .description h2 {
       margin: 0;
       font-weight: 600;
@@ -65,8 +68,16 @@
   .description p,h2,h3 {
       padding-left: 2rem;
       position: relative;
+      color: rgba(0, 0, 0, 0.733);
   }
-.description span {
+
+  .description h3 {
+      font-weight: 500;
+      margin: 0;
+      padding: 1rem;
+  }
+
+.span-right {
     font-size: .8rem;
     margin: 0;
     bottom: 1rem;
@@ -77,4 +88,59 @@
   .description p {
       color: gray;
       font-weight: 450;
+      margin: 0;
+      padding: 1rem;
   }
+
+  .form-container {
+      padding: 1rem;
+      border: 1px solid lightgray;
+      margin-bottom: auto;
+      right: 4%;
+      position: fixed;
+      border-radius: 1rem;
+      box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.1);
+  }
+
+  .button-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: .5rem;
+  }
+
+  .submit {
+      width: 50%;
+      text-align: center;
+  }
+
+  h4 {
+      font-weight: 500;
+      margin: 0;
+      padding: .5rem 1rem;
+      color: gray;
+  }
+
+  .math-container {
+      columns: auto 2;
+      margin: 1rem;
+  }
+
+  .total-price {
+      text-align: right;
+  }
+
+  .redirect {
+      margin-top: 1rem;
+      border-radius: 3rem;
+      border: 1px solid lightgray;
+  }
+
+  .redirect-anchor {
+      padding: 0 1rem;
+      font-size: 14px;
+  }
+
+  .redirect:hover {
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.144);
+}

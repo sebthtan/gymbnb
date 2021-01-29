@@ -7,11 +7,11 @@ module.exports = {
       return Math.floor(Math.random() * Math.floor(max) + 1)
     }
     const newData = []
-    for (let i = 1; i < 200; i++) {
+    for (let i = 1; i < 750; i++) {
       const seed = {
         url: faker.image.imageUrl(),
         caption: faker.lorem.sentence(),
-        listingId: getRandomInt(51)
+        listingId: getRandomInt(250)
       }
       newData.push(seed)
     }

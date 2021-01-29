@@ -55,11 +55,11 @@ const ListingPage = () => {
         )
     } else {
         sessionLinks = (
-            <Link>
+            <Link to='/login'>
                 <div className='redirect'>
                     <h2 className='redirect-anchor'>
                         Log in to reserve
-                </h2>
+                    </h2>
                 </div>
             </Link>
         )

@@ -1,0 +1,72 @@
+
+.reviews-section-container {
+    width: 50%;
+}
+
+.reviews-section-header {
+    padding: 2rem 1rem 0 1rem;
+    border-top: 1px solid lightgray;
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    padding: 1rem;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+    color: gray;
+    padding-top: 1rem;
+}
+
+li span {
+    color: rgba(128, 128, 128, 0.774);
+    float: right;
+}
+
+li {
+    padding: 1rem 1rem 1rem 0;
+}
+
+h4 {
+    padding: 1rem;
+    padding-left: 0;
+}
+
+.show-reviews-button {
+    padding: .5rem 1rem;
+    font-size: 16px;
+    font-weight: 550;
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid black;
+    border-radius: .25rem;
+    color: black;
+    cursor: pointer;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif
+}
+
+.show-reviews-button:hover {
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2);
+}
+
+.show-reviews-button:focus {
+    outline: none;
+    background-color: rgba(211, 211, 211, 0.404);
+}
+
+.show-reviews-button-container {
+    padding-top: 1rem;
+}
+
+.overflow {
+    overflow: hidden;
+}

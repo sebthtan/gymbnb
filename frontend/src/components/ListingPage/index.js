@@ -1,7 +1,7 @@
 import './ListingPage.css'
 import { useSelector } from 'react-redux'
-import { useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { useParams, Link, useHistory } from 'react-router-dom'
 import { Fade } from 'react-slideshow-image'
 import "react-slideshow-image/dist/styles.css";
 import { Wifi, Pool, FitnessCenter, DirectionsBike, Lock, Bathtub } from '@material-ui/icons'
@@ -9,9 +9,12 @@ import { DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { addDays } from 'date-fns'
+import ReactStars from 'react-rating-stars-component'
+import ReviewsPage from '../ReviewsPage'
 
 const ListingPage = () => {
     const { listingId } = useParams()
+    const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
     const listing = useSelector(state => state.listings.list.find(listing => Number(listing.id) === Number(listingId)))
     let photos = listing?.Photos
@@ -23,6 +26,37 @@ const ListingPage = () => {
             key: 'selection'
         }
     ])
+
+    const numberWithCommas = (num) => {
+        return num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    const averageStars = (reviews) => {
+        const allStars = reviews.map((review) => Number(review.starsRating))
+        let sum = 0
+        if (allStars.length) {
+            for (let i = 0; i < allStars.length; i++) {
+                sum += allStars[i]
+            }
+            return Number(sum) / Number(allStars.length)
+        } else {
+            return sum
+        }
+    }
+
+    const myRef = useRef(null)
+    const executeScroll = () => {
+        return myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+
+    let totalStars
+    if (listing) {
+        if (averageStars(listing.Reviews) === 0) {
+            totalStars = 'No reviews yet'
+        } else {
+            totalStars = averageStars(listing.Reviews).toFixed(2)
+        }
+    }
 
     const [dateRangeObj] = dateRange
     const totalNights = Number(Math.abs((dateRangeObj.endDate - dateRangeObj.startDate) / 86400000))
@@ -40,7 +74,9 @@ const ListingPage = () => {
         total = Number(subtotal) + Number(serviceFee) + Number(cleaningFee)
     }
 
-    //
+    useEffect(() => {
+        history.push(`/listings/${listingId}`)
+    }, [history, listingId])
 
 
     let sessionLinks
@@ -64,7 +100,6 @@ const ListingPage = () => {
             </Link>
         )
     }
-    //
 
     const handleChange = (ranges) => {
         setDateRange([ranges.selection])
@@ -78,7 +113,7 @@ const ListingPage = () => {
 
     if (!listing) return (
         <div className='content'>
-            <h2>Gym not found.</h2>
+            <h2>Loading...</h2>
         </div>
     )
 
@@ -91,81 +126,87 @@ const ListingPage = () => {
                             {listing.title}
                         </h1>
                         <p className='listing-location'>{`${listing.City.name}, ${listing.City.State.name}`}</p>
+                        <div style={{ cursor: 'pointer', width: '10%' }} onClick={executeScroll}>
+                            <ReactStars {...{ size: 15, value: averageStars(listing.Reviews), edit: false }} />
+                            <div >
+                                <span className='stars-reviews-count' style={{ fontWeight: '700' }}>{totalStars}</span>
+                                <span className='stars-reviews-count'>({listing.Reviews.map(review => review.starsRating).length})</span>
+                            </div>
+                        </div>
                     </div>
                     <div style={{ display: 'flex' }}>
                         <div className='slide-container'>
+                            <div className='form-container'>
+                                <form onSubmit={handleSubmit}>
+                                    <div>
+                                        <h3>
+                                            {`$${listing.pricePer} / night`}
+                                        </h3>
+                                        <DateRangePicker
+                                            ranges={dateRange}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+                                    <div className='button-container'>
+                                        {sessionLinks}
+                                    </div>
+                                    <div className='math-container'>
+                                        <div>
+                                            <div>
+                                                <h4>
+                                                    {`$${listing.pricePer} x ${totalNights} night(s)`}
+                                                </h4>
+                                                <h4>
+                                                    Cleaning Fee
+                                        </h4>
+                                                <h4>
+                                                    Service Fee
+                                        </h4>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <h4 className='total-price'>
+                                                    {`$${numberWithCommas(subtotal)}`}
+                                                </h4>
+                                                <h4 className='total-price'>
+                                                    {`$${numberWithCommas(cleaningFee)}`}
+                                                </h4>
+                                                <h4 className='total-price'>
+                                                    {`$${numberWithCommas(serviceFee)}`}
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='math-container' style={{ borderTop: '1px solid lightgray' }}>
+                                        <div>
+                                            <h3 style={{ padding: '1rem', margin: '0' }}>
+                                                Total
+                                            </h3>
+                                        </div>
+                                        <div>
+                                            <h3 className='total-price' style={{ padding: '1rem', margin: '0' }}>
+                                                {`$${numberWithCommas(total)}`}
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                             <Fade>
                                 {photos.map((photo) =>
-                                    <div key={photo.url} className='each-fade'>
-                                        <div>
-                                            <img className='fade-img' alt='fade-img' src={photo.url} />
+                                    <div key={photo.caption} className='each-fade'>
+                                        <div key={photo.caption}>
+                                            <img className='fade-img' alt='fade-img' src={photo.url} key={photo.caption} />
                                         </div>
                                     </div>
                                 )}
                             </Fade>
                         </div>
-                        <div className='form-container'>
-                            <form onSubmit={handleSubmit}>
-                                <div>
-                                    <h3>
-                                        {`$${listing.pricePer} / night`}
-                                    </h3>
-                                    <DateRangePicker
-                                        ranges={dateRange}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                                <div className='button-container'>
-                                    {sessionLinks}
-                                </div>
-                                <div className='math-container'>
-                                    <div>
-                                        <div>
-                                            <h4>
-                                                {`$${listing.pricePer} x ${totalNights} night(s)`}
-                                            </h4>
-                                            <h4>
-                                                Cleaning Fee
-                                        </h4>
-                                            <h4>
-                                                Service Fee
-                                        </h4>
-                                        </div>
-
-                                    </div>
-                                    <div>
-                                        <div>
-                                            <h4 className='total-price'>
-                                                {`$${subtotal}`}
-                                            </h4>
-                                            <h4 className='total-price'>
-                                                {`$${cleaningFee}`}
-                                            </h4>
-                                            <h4 className='total-price'>
-                                                {`$${serviceFee}`}
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='math-container' style={{ borderTop: '1px solid lightgray' }}>
-                                    <div>
-                                        <h3 style={{ padding: '1rem', margin: '0' }}>
-                                            Total
-                                            </h3>
-                                    </div>
-                                    <div>
-                                        <h3 className='total-price' style={{ padding: '1rem', margin: '0' }}>
-                                            {`$${total}`}
-                                        </h3>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
                     </div>
-                    <div>
+                    <div >
                         <div className='description'>
                             <div>
-                                <h2>
+                                <h2 style={{ padding: '1rem' }}>
                                     {`Entire gym hosted by ${listing.Host.User.username}`}
                                     <span className='span-right'>{`Posted ${listing.createdAt.split('T')[0]}`}</span>
                                 </h2>
@@ -173,7 +214,7 @@ const ListingPage = () => {
                                     {listing.description}
                                 </p>
                                 <div>
-                                    <h3>Amenities</h3>
+                                    <h3 >Amenities</h3>
                                     {listing.wifi && (
                                         <p>
                                             <Wifi />
@@ -183,7 +224,7 @@ const ListingPage = () => {
                                     {listing.freeWeights && (
                                         <p>
                                             <FitnessCenter />
-                                            {` Free seights section`}
+                                            {` Free weights section`}
                                         </p>
                                     )}
                                     {listing.machineWeights && (
@@ -220,10 +261,11 @@ const ListingPage = () => {
                                 </div>
                             </div>
                         </div>
-
+                    </div>
+                    <div ref={myRef}>
+                        <ReviewsPage reviews={listing.Reviews} />
                     </div>
                 </div>
-
             )}
         </>
     )

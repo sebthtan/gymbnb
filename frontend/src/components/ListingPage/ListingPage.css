@@ -97,6 +97,7 @@
       border: 1px solid lightgray;
       margin-bottom: auto;
       right: 4%;
+      top: 12%;
       position: fixed;
       border-radius: 1rem;
       box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.1);
@@ -143,4 +144,10 @@
 
   .redirect:hover {
     box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.144);
+}
+
+.stars-reviews-count {
+    color: gray;
+    font-size: 14px;
+    padding: .25rem .25rem .25rem 0;
 }

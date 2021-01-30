@@ -14,7 +14,7 @@ module.exports = {
         hostId: getRandomInt(2),
         title: faker.company.companyName(),
         pricePer: faker.finance.amount(),
-        description: faker.lorem.sentence(),
+        description: faker.lorem.paragraph(),
         wifi: faker.random.boolean(),
         freeWeights: faker.random.boolean(),
         machineWeights: faker.random.boolean(),

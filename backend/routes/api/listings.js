@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { User, Host, City, State, Listing, Photo } = require('../../db/models')
+const { User, Host, City, State, Listing, Photo, Review } = require('../../db/models')
 const { Op } = require('sequelize')
 const asyncHandler = require('express-async-handler')
 
@@ -21,6 +21,12 @@ router.get('/', asyncHandler(async (req, res) => {
             },
             {
                 model: Photo, attributes: ['url', 'caption']
+            },
+            {
+                model: Review,
+                include: {
+                    model: User, attributes: ['username', 'createdAt']
+                }
             }
         ]
     })
@@ -44,10 +50,25 @@ router.get(`/:id(\\d+)`, asyncHandler(async (req, res) => {
             },
             {
                 model: Photo, attributes: ['url', 'caption']
+            },
+            {
+                model: Review, attributes: ['id', 'userId', 'starsRating', 'content', 'createdAt'],
+                include: {
+                    model: User, attributes: ['username', 'createdAt']
+                }
             }
         ]
     });
     return res.json(listing)
+}))
+
+router.get(`/:id(\\d+)/reviews`, asyncHandler(async (req, res) => {
+    const reviews = await Review.findAll({
+        where: {
+            listingId: req.params.id
+        }
+    })
+    return res.json(reviews)
 }))
 
 module.exports = router

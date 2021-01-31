@@ -12,6 +12,8 @@ import { addDays } from 'date-fns'
 import ReactStars from 'react-rating-stars-component'
 import ReviewsPage from '../ReviewsPage'
 
+
+
 const ListingPage = () => {
     const { listingId } = useParams()
     const history = useHistory()

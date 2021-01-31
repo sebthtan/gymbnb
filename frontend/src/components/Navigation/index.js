@@ -10,22 +10,6 @@ const Navigation = ({ isLoaded }) => {
     const sessionUser = useSelector(state => state.session.user)
 
     let sessionLinks = <ProfileButton user={sessionUser} className='profile' />
-    // if (sessionUser) {
-    //     sessionLinks = (
-    //         <ProfileButton user={sessionUser} className='profile' />
-    //     )
-    // } else {
-    //     sessionLinks = (
-    //         <>
-    //             <div>
-    //                 <NavLink to='/login' id='login'>Log In</NavLink>
-    //             </div>
-    //             <div>
-    //                 <NavLink to='/signup' id='signup'>Sign Up</NavLink>
-    //             </div>
-    //         </>
-    //     )
-    // }
 
     return (
         <nav>

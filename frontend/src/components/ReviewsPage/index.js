@@ -1,5 +1,7 @@
 import './ReviewsPage.css'
 import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import ReactStars from 'react-rating-stars-component'
 import Modal from 'react-modal'
 
@@ -7,6 +9,7 @@ Modal.setAppElement('#root')
 
 const ReviewsPage = ({ reviews }) => {
     let reviewsPreview = []
+    const user = useSelector(state => state.session.user)
     const [modalOpen, setModalOpen] = useState(false)
 
     const customStyles = {
@@ -55,6 +58,26 @@ const ReviewsPage = ({ reviews }) => {
         <div className='reviews-section-container'>
             <h3 className='reviews-section-header'>
                 Reviews
+                {user && (
+                    <Link to={`/listings/${reviews[0].listingId}/reviews/add`}>
+                        <button
+                            className='show-reviews-button'
+                            style={{ float: 'right' }}
+                        >
+                            Add a review
+                    </button>
+                    </Link>
+                )}
+                {!user && (
+                    <Link to='/login'>
+                        <button
+                            className='show-reviews-button'
+                            style={{ float: 'right' }}
+                        >
+                            Log in to add a review
+                    </button>
+                    </Link>
+                )}
             </h3>
             <ul>
                 {reviewsPreview.length >= 1 && (

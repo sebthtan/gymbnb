@@ -9,6 +9,7 @@ import HomePage from './components/HomePage'
 import SearchResultsPage from './components/SearchResultsPage'
 import ListingPage from './components/ListingPage'
 import { getListings } from './store/listings'
+import AddReviewPage from './components/AddReviewPage'
 
 function App() {
   const dispatch = useDispatch()
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path='/listings/:listingId'>
             <ListingPage />
+          </Route>
+          <Route exact path='/listings/:listingId/reviews/add'>
+            <AddReviewPage />
           </Route>
         </Switch>
       )}

@@ -13,7 +13,7 @@ const AddReviewPage = () => {
     const [content, setContent] = useState('')
     const [errors, setErrors] = useState([])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         if (content.length === 0) {
             return setErrors(['Review must have content.'])
@@ -23,6 +23,7 @@ const AddReviewPage = () => {
         }
         dispatch(createReview({ listingId, starsRating, content }))
         history.push(`/listings/${listingId}`)
+        window.location.reload()
     }
 
     return (

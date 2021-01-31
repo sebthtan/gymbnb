@@ -40,8 +40,11 @@ router.get('/', asyncHandler(async (req, res) => {
                 model: Review,
                 include: {
                     model: User, attributes: ['username', 'createdAt']
-                }
+                },
             }
+        ],
+        order: [
+            [Review, 'createdAt', 'DESC']
         ]
     })
     return res.json(listings)
@@ -71,7 +74,10 @@ router.get(`/:id(\\d+)`, asyncHandler(async (req, res) => {
                     model: User, attributes: ['username', 'createdAt']
                 }
             }
-        ]
+        ],
+        order: [
+            [Review, 'createdAt', 'DESC']
+        ],
     });
     return res.json(listing)
 }))

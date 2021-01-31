@@ -21,12 +21,14 @@ export const createReview = (review) => async dispatch => {
     return res
 }
 
-const initialState = {}
+const initialState = {
+    newReview: {}
+}
 
 const reviewsReducer = (state = initialState, action) => {
     switch (action.type) {
         case POST_REVIEW: {
-            return Object.assign({}, state, action.review)
+            return { ...state, newReview: action.review }
         }
         default: return state
     }

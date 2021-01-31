@@ -1,5 +1,5 @@
 import './ListingPage.css'
-import { useSelector } from 'react-redux'
+import { useSelector, connect } from 'react-redux'
 import { useState, useEffect, useRef } from 'react'
 import { useParams, Link, useHistory } from 'react-router-dom'
 import { Fade } from 'react-slideshow-image'
@@ -273,5 +273,9 @@ const ListingPage = () => {
     )
 }
 
+const mapStateToProps = (state) => {
+    return { newReview: state.reviews.newReview }
+}
 
-export default ListingPage
+
+export default connect(mapStateToProps)(ListingPage)

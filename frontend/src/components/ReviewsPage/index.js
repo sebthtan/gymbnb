@@ -1,6 +1,6 @@
 import './ReviewsPage.css'
 import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ReactStars from 'react-rating-stars-component'
 import Modal from 'react-modal'
@@ -10,6 +10,7 @@ Modal.setAppElement('#root')
 const ReviewsPage = ({ reviews }) => {
     let reviewsPreview = []
     const user = useSelector(state => state.session.user)
+    const newReview = useSelector(state => state.reviews.newReview)
     const [modalOpen, setModalOpen] = useState(false)
 
     const customStyles = {
@@ -38,7 +39,6 @@ const ReviewsPage = ({ reviews }) => {
         for (let i = 0; i < 4; i++) {
             reviewsPreview.push(reviews[i])
         }
-        console.log(reviewsPreview)
     }
     if (reviews.length < 4 && reviews.length >= 1) {
         for (let i = 0; i < reviews.length; i++) {
@@ -53,6 +53,7 @@ const ReviewsPage = ({ reviews }) => {
             document.body.classList.remove('overflow')
         }
     }, [modalOpen])
+
 
     return (
         <div className='reviews-section-container'>
@@ -155,4 +156,8 @@ const ReviewsPage = ({ reviews }) => {
     )
 }
 
-export default ReviewsPage
+const mapStateToProps = (state) => {
+    return { newReview: state.reviews.newReview }
+}
+
+export default connect(mapStateToProps)(ReviewsPage)

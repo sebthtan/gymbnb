@@ -124,6 +124,7 @@ outline: none;
 
 .searchbar-container {
     padding: .1rem 1rem .1rem 2rem;
+    margin-right: 4.5rem;
     display: flex;
     align-items: center;
     border-radius: 5rem;

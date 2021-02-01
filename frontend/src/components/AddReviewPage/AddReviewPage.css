@@ -1,0 +1,47 @@
+.textarea-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.textarea-div label {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+}
+
+.header {
+    border-bottom: 1px solid lightgray;
+}
+
+.rate-listing {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 1rem;
+}
+
+.post-review-form {
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.input-div textarea {
+    width: 100%;
+    height: 20vh;
+    padding: 0 1rem;
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color:gray;
+}
+
+.input-div textarea::placeholder {
+    color: rgb(172, 172, 172);
+}
+
+.react-stars:focus {
+    outline: none;
+}

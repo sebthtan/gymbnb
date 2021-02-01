@@ -35,7 +35,7 @@ const ReviewsPage = ({ reviews }) => {
         setModalOpen(false)
     }
 
-    if (reviews.length > 4) {
+    if (reviews.length >= 4) {
         for (let i = 0; i < 4; i++) {
             reviewsPreview.push(reviews[i])
         }

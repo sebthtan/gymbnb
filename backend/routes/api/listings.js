@@ -45,7 +45,7 @@ router.get('/', asyncHandler(async (req, res) => {
         ],
         order: [
             [Review, 'createdAt', 'DESC']
-        ]
+        ],
     })
     return res.json(listings)
 }))
@@ -98,6 +98,15 @@ router.post('/:id(\\d+)/reviews/add', validateReviews, requireAuth, asyncHandler
     const review = await Review.create({ listingId: listingId, starsRating, content, userId: req.user.id })
 
     return res.json(review)
+}))
+
+router.delete('/:id', requireAuth, asyncHandler(async (req, res) => {
+    const listing = await Review.destroy({
+        where: {
+            listingId: req.params.id
+        }
+    })
+    return res.json(listing)
 }))
 
 module.exports = router

@@ -4,6 +4,7 @@ const LOAD_LISTINGS = 'listings/LOAD_LISTINGS'
 const GET_SUGGESTIONS = 'listings/GET_SUGGESTIONS'
 const GET_COORDINATES = 'listings/GET_COORDINATES'
 const LOAD_ADDRESSES = 'listings/LOAD_ADDRESSES'
+const REMOVE_REVIEW = 'listings/REMOVE_REVIEW'
 
 const load = (list) => ({
     type: LOAD_LISTINGS,
@@ -24,6 +25,12 @@ const addresses = (addresses, filtered) => ({
     type: LOAD_ADDRESSES,
     addresses,
     filtered
+})
+
+export const removeReview = (reviewId, listingId) => ({
+    type: REMOVE_REVIEW,
+    reviewId,
+    listingId
 })
 
 export const search = (location, listings) => async dispatch => {
@@ -84,6 +91,11 @@ const listingsReducer = (state = initialState, action) => {
         }
         case LOAD_ADDRESSES: {
             return { ...state, addresses: action.addresses, filtered: action.filtered }
+        }
+        case REMOVE_REVIEW: {
+            const newState = { ...state }
+            delete newState.list[action.listingId - 1].Reviews
+            return
         }
         default:
             return state;
